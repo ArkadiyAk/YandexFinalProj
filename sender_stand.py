@@ -1,7 +1,8 @@
+# исправленный файл
+
 import configuration
 import requests
 import data
-
 
 # Создаем новый заказ
 def creating_order(user_body):
@@ -17,8 +18,11 @@ def track_number_new_order():
 
 
 # Получаем набор по трек-номеру заказа
-def order_by_track():
-    return requests.get(configuration.URL + configuration.GET_ORDER_BY_NUMBER + '?t=' + track_number_new_order())
+def order_by_track(track_number):
+    return requests.get(configuration.URL + configuration.GET_ORDER_BY_NUMBER + '?t=' + track_number)
 
+# Получаем трек-номер созданного заказа
+track_number = track_number_new_order()
 
-response_order = order_by_track()
+# Получаем информацию о заказе по трек-номеру
+response_order = order_by_track(track_number)
